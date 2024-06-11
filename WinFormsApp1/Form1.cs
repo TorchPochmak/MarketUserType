@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Numerics;
-using WinFormsApp1.Properties;
+using MarketUserType.Properties;
 
 namespace WinFormsApp1
 {
@@ -129,21 +129,24 @@ namespace WinFormsApp1
                 if (Answers[i] == -1)
                 {
                     ShowCustomMessageBox($"Вы не ответили на все вопросы ({i + 1})", "Error", true);
-                   // return;
+                   return;
                 }
             }
             //SEND TO SREVER ANSWERS
             Form2 box = ShowCustomMessageBox($"Обработка ответов...", "Success", false);
-            box.RunNetwork(Answers);
             box.ShowDialog();
 
         }
         private Form2 ShowCustomMessageBox(string message, string title, bool start)
         {
-            Form2 messageBox = new Form2();
+            Form2 messageBox;
+            if (!start)
+                messageBox = new Form2(Answers);
+            else
+                messageBox = new Form2();
             messageBox.Text = title;
             messageBox.SendText(message);
-            if(start) messageBox.ShowDialog();
+            if (start) messageBox.ShowDialog();
             return messageBox;
         }
 

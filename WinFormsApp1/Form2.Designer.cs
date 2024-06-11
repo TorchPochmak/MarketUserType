@@ -36,19 +36,17 @@ namespace WinFormsApp1
             // 
             // label1
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
             label1.BackColor = Color.Transparent;
+            label1.Dock = DockStyle.Fill;
             label1.Font = new Font("Yu Gothic UI", 14F, FontStyle.Regular, GraphicsUnit.Point);
             label1.ForeColor = Color.SkyBlue;
-            label1.Location = new Point(90, 40);
+            label1.Location = new Point(0, 0);
             label1.Name = "label1";
-            label1.Size = new Size(103, 25);
+            label1.Size = new Size(284, 111);
             label1.TabIndex = 0;
             label1.Text = "Something";
             label1.TextAlign = ContentAlignment.MiddleCenter;
-            label1.Dock = DockStyle.Fill;
-            label1.AutoSize = false;
+            label1.Click += label1_Click;
             // 
             // Form2
             // 
@@ -63,7 +61,6 @@ namespace WinFormsApp1
             Name = "Form2";
             StartPosition = FormStartPosition.CenterScreen;
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

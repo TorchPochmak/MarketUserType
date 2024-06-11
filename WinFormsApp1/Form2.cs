@@ -19,16 +19,38 @@ namespace WinFormsApp1
         public const string NEURON_PATH = "./network.exe";//starting..
 
         public const string NEURON_OUTPUT_PATH = "./network_out.txt";//SHOW IT
-        public Form2()
+
+        private BackgroundWorker worker;
+
+        List<int>? Answers = null;
+        public Form2(List<int>? answers = null)
         {
             InitializeComponent();
+            if (answers != null)
+            {
+                Answers = answers;
+                worker = new BackgroundWorker();
+                worker.DoWork += DoNetworkAsync;
+                worker.RunWorkerCompleted += NetworkCompleted;
+                worker.RunWorkerAsync();
+            }
+
         }
         public void SendText(string text)
         {
             label1.Text = text;
         }
+        private void DoNetworkAsync(object? sender, DoWorkEventArgs e)
+        {
+            string s = RunNetwork(Answers);
+            e.Result = s == null ? "" : s;
+        }
+        private void NetworkCompleted(object? sender, RunWorkerCompletedEventArgs e)
+        {
+            label1.Text = e.Result as string;
+        }
 
-        public void RunNetwork(List<int> Answers)
+        public string RunNetwork(List<int> Answers)
         {
             try
             {
@@ -37,13 +59,13 @@ namespace WinFormsApp1
                     for (int i = 0; i < Answers.Count; i++)
                     {
                         fr.Write(Answers[i]);
-                        fr.Write(" ");
+                        if(i != Answers.Count - 1) fr.Write(",");
                     }
                 }
             }
-            catch 
+            catch
             {
-                label1.Text = "Не найден путь к файлу вывода ответов";
+                 return "Не найден путь к файлу вывода ответов";
             }
             //
             using (var process = new Process())
@@ -58,23 +80,24 @@ namespace WinFormsApp1
                 catch (Exception ex)
                 {
                     process.Dispose();//?..
-                    label1.Text = "Нейронная сеть не работает. Проверьте путь к файлу";
+                    return "Нейронная сеть не работает. Проверьте путь к файлу";
                 }
                 process.WaitForExit();
-                try
-                {
-                    using (StreamReader fr = new StreamReader(NEURON_OUTPUT_PATH))
-                    {
-                        string s = fr.ReadToEnd();
-
-                        label1.Text = s;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    label1.Text = "Нейронная сеть отработала неправильно";
-                }
             }
+            try
+            {
+                string s = File.ReadAllText(NEURON_OUTPUT_PATH);
+                return s;
+            }
+            catch (Exception ex)
+            {
+                return "Нейронная сеть отработала неправильно";
+            }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

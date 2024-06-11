@@ -14,11 +14,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\TorchPochmak\\source\\repos\\WinFormsApp1\\WinFormsApp1\\MarketUserType.csproj",
+      "projectUniqueName": "E:\\GitHub\\MarketUserType\\WinFormsApp1\\MarketUserType.csproj",
       "projectName": "MarketUserType",
-      "projectPath": "C:\\Users\\TorchPochmak\\source\\repos\\WinFormsApp1\\WinFormsApp1\\MarketUserType.csproj",
+      "projectPath": "E:\\GitHub\\MarketUserType\\WinFormsApp1\\MarketUserType.csproj",
       "packagesPath": "C:\\Users\\TorchPochmak\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\TorchPochmak\\source\\repos\\WinFormsApp1\\WinFormsApp1\\obj\\",
+      "outputPath": "E:\\GitHub\\MarketUserType\\WinFormsApp1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
