@@ -34,7 +34,6 @@ namespace WinFormsApp1
                 worker.RunWorkerCompleted += NetworkCompleted;
                 worker.RunWorkerAsync();
             }
-
         }
         public void SendText(string text)
         {
@@ -84,6 +83,7 @@ namespace WinFormsApp1
                 }
                 process.WaitForExit();
             }
+
             try
             {
                 string s = File.ReadAllText(NEURON_OUTPUT_PATH);
@@ -93,11 +93,6 @@ namespace WinFormsApp1
             {
                 return "Нейронная сеть отработала неправильно";
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

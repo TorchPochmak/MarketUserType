@@ -148,11 +148,10 @@ namespace WinFormsApp1
             if (!EnableEh)
                 this.BackColor = Color.Transparent;
             else
-            if (!IsSelected)
-            {
-                this.BackColor = this.MouseEnterColor;
-            }
-            
+                if (!IsSelected)
+                {
+                    this.BackColor = this.MouseEnterColor;
+                }
         }
         private void OnMouseClickCustom(object sender, EventArgs e)
         {
